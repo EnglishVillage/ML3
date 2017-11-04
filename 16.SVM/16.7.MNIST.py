@@ -16,6 +16,8 @@ from sklearn.ensemble import RandomForestClassifier
 from time import time
 from pprint import pprint
 
+from utils import wkzutils
+
 
 def save_image(im, i):
     im = 255 - im
@@ -41,7 +43,7 @@ if __name__ == "__main__":
 
     print '载入训练数据...'
     t = time()
-    data = pd.read_csv('.\\16.MNIST.train.csv', header=0, dtype=np.int)
+    data = pd.read_csv(wkzutils.get_path_sources("16.MNIST.train.csv"), header=0, dtype=np.int)
     print '载入完成，耗时%f秒' % (time() - t)
     y = data['label'].values
     x = data.values[:, 1:]
@@ -51,7 +53,7 @@ if __name__ == "__main__":
 
     print '载入测试数据...'
     t = time()
-    data_test = pd.read_csv('.\\16.MNIST.test.csv', header=0, dtype=np.int)
+    data_test = pd.read_csv(wkzutils.get_path_sources("16.MNIST.test.csv"), header=0, dtype=np.int)
     data_test = data_test.values
     images_test_result = data_test.reshape(-1, 28, 28)
     print '载入完成，耗时%f秒' % (time() - t)
